@@ -69,4 +69,22 @@
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
     </style>
+
+    <style name="AppTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="android:fontFamily">@font/aj_kunheing_etm05</item>
+        <item name="android:textStyle">normal</item> <!-- or italic, bold, etc. -->
+        <item name="itemTextAppearance">@style/NavigationDrawerTextAppearance</item>
+    </style>
+
+    <style name="NavigationDrawerTextAppearance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">@font/aj_kunheing_etm05</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Body1" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">@font/aj_kunheing_etm05</item>
+        <item name="fontFamily">@font/aj_kunheing_etm05</item>
+    </style>
+
 </resources>

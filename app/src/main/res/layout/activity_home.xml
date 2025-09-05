@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/homeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPakpi"
@@ -69,7 +70,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu">
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:menu="@menu/drawer_menu"
+        app:subheaderTextAppearance="@style/TextAppearance.AppCompat.Body1">
 
 
     </com.google.android.material.navigation.NavigationView>
