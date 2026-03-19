@@ -5,52 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F9FF"
-    android:padding="20dp"
     tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/menu_main"
+            app:title="Wann Kart (ဈေးနေ့)"
+            app:titleTextColor="#1A1C1E" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/appBar"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="24dp">
 
         <TextView
             android:id="@+id/tvDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25"
             android:fontFamily="sans-serif-black"
-            android:textColor="#1A1C1E"
-            android:textSize="90sp"
+            android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:includeFontPadding="false" />
+            android:text="25"
+            android:textColor="#1A1C1E"
+            android:textSize="90sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/tvDay"
             android:layout_alignTop="@id/tvDay"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@id/tvDay"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="သောကြာ"
-                android:textSize="20sp"
-                android:textColor="#0067FF" />
+                android:textColor="#0067FF"
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/tvMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
                 android:text="June 2022"
-                android:textSize="16sp"
-                android:textColor="#74777F"
                 android:textAllCaps="true"
-                android:letterSpacing="0.1" />
+                android:textColor="#74777F"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -58,23 +76,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvDay"
-            android:layout_marginTop="-10dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            app:strokeWidth="1dp"
+            android:layout_marginTop="-12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
             app:strokeColor="#E0E2EC"
-            app:cardBackgroundColor="#FFFFFF">
+            app:strokeWidth="1dp">
 
             <TextView
                 android:id="@+id/tvMyanmarDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="12dp"
+                android:drawableStart="@drawable/ic_calendar_mini"
+                android:drawablePadding="12dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="14dp"
                 android:text="၁၃၈၄ ခု၊ နယုန်လဆန်း ၇ ရက်"
                 android:textColor="#44474E"
-                android:drawableStart="@drawable/ic_calendar_mini"
-                android:drawablePadding="8dp"
                 android:textSize="14sp" />
         </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
@@ -84,8 +102,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/headerSection"
-        android:columnCount="7"
-        android:layout_marginBottom="12dp">
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="12dp"
+        android:columnCount="7">
 
         <TextView android:layout_columnWeight="1" android:gravity="center" android:text="S" android:textColor="#FF5252" android:textSize="12sp" android:fontFamily="sans-serif-black" />
         <TextView android:layout_columnWeight="1" android:gravity="center" android:text="M" android:textColor="#9DA3A9" android:textSize="12sp" />
@@ -102,6 +121,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/layout2"
         android:layout_below="@id/headerView"
+        android:layout_marginHorizontal="20dp"
         android:columnCount="7" />
 
     <com.google.android.material.card.MaterialCardView
@@ -109,21 +129,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="#1A1C1E">
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="24dp"
+        app:cardBackgroundColor="#1A1C1E"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="8dp">
 
         <TextView
             android:id="@+id/tvWannKart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="10dp"
+            android:paddingVertical="16dp"
             android:text="မူဆယ်ဈေးနေ့"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:letterSpacing="0.05" />
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp" />
     </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

@@ -1,24 +1,37 @@
 package it.saimao.wannkart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
-import androidx.appcompat.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.jakewharton.threetenabp.AndroidThreeTen;
-import mmcalendar.*;
+
 import org.threeten.bp.DayOfWeek;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.ChronoUnit;
 
+import mmcalendar.CalendarType;
+import mmcalendar.Config;
+import mmcalendar.HolidayCalculator;
+import mmcalendar.Language;
+import mmcalendar.MyanmarDate;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Toolbar toolbar;
     private TextView tvDay, tvDate, tvMonth, tvWannKart, tvMyanmarDate;
     private GridLayout calendarLayout;
     private MaterialCardView cardWannKart;
@@ -44,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentDate = LocalDate.now();
         refreshCalendar();
         setDate(currentDate);
+
     }
 
     private void initViews() {
@@ -54,14 +68,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvWannKart = findViewById(R.id.tvWannKart);
         cardWannKart = findViewById(R.id.layout2);
         calendarLayout = findViewById(R.id.calenderPane);
+        toolbar = findViewById(R.id.toolbar);
 
         tvWannKart.setOnLongClickListener(v -> changeWannKartName());
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.menuInfo) {
+                    Intent it = new Intent(MainActivity.this, AboutUsActivity.class);
+                    startActivity(it);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void setupSwipeListener() {
         onSwipeTouchListener = new OnSwipeTouchListener() {
-            public boolean onSwipeRight() { navigateMonth(-1); return true; }
-            public boolean onSwipeLeft() { navigateMonth(1); return true; }
+            public boolean onSwipeRight() {
+                navigateMonth(-1);
+                return true;
+            }
+
+            public boolean onSwipeLeft() {
+                navigateMonth(1);
+                return true;
+            }
         };
         calendarLayout.setOnTouchListener(onSwipeTouchListener);
     }
@@ -92,7 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         GridLayout.LayoutParams param = new GridLayout.LayoutParams(
                 GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f),
                 GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
-        param.height = 0; param.width = 0;
+        param.height = 0;
+        param.width = 0;
         calendarLayout.addView(new View(this), param);
     }
 
@@ -100,7 +134,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         GridLayout.LayoutParams param = new GridLayout.LayoutParams(
                 GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f),
                 GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
-        param.height = 0; param.width = 0;
+        param.height = 0;
+        param.width = 0;
 
         LocalDate cellDate = currentDate.withDayOfMonth(1).plusDays(dayOffset);
         View dateView = LayoutInflater.from(this).inflate(R.layout.date_button, null);
