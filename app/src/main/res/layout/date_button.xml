@@ -1,49 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/date_bg">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="4dp"
+    android:background="@drawable/date_cell_selector">
 
-    <ImageView
-        android:id="@+id/ivMoon"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitCenter"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_columnWeight="1"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:weightSum="3">
-        <TextView
-            android:id="@+id/tvMoonDate"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.2"
-            android:gravity="right"
-            android:text="၁"
-            android:textColor="#AA1f91"
-            android:textSize="14sp" />
-
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvEngDate"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:gravity="center"
-            android:text="55"
-            android:textColor="#4E342E"
-            android:textSize="22sp" />
+            android:text="25"
+            android:textColor="#1A1C1E"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/ivMoon"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="top|end"
+            android:visibility="gone" />
+    </FrameLayout>
 
+    <TextView
+        android:id="@+id/tvMoonDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:alpha="0.6"
+        android:textColor="#42474E"
+        android:textSize="10sp" />
 
-
-
-
-</RelativeLayout>
+</LinearLayout>
