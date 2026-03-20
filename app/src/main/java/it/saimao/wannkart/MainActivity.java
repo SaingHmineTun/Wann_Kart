@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tvEng.setText(String.valueOf(date.getDayOfMonth()));
         MyanmarDate mDate = MyanmarDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
-        tvMoon.setText(String.valueOf(mDate.getDayOfMonth() > 15 ? mDate.getDayOfMonth() - 15 : mDate.getDayOfMonth()));
+        tvMoon.setText(mDate.getFortnightDay());
 
         // Reset Styles
         view.setBackgroundResource(0);
