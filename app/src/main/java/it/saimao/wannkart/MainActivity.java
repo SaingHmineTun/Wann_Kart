@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import org.threeten.bp.DayOfWeek;
@@ -229,7 +234,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private boolean changeWannKartName() {
-        // [Existing Dialog Code Here]
+        LinearLayout layout = new LinearLayout(MainActivity.this);
+        TextInputEditText editText = new TextInputEditText(MainActivity.this);
+        editText.setText(Utils.getDayName(this, wannKartDay));
+        editText.setSelectAllOnFocus(true);
+        layout.addView(editText);
+
+        LinearLayout.LayoutParams lp4layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout.setLayoutParams(lp4layout);
+
+        LinearLayout.LayoutParams lp4et = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp4et.setMarginStart(Utils.dpToPx(15));
+        lp4et.setMarginEnd(Utils.dpToPx(15));
+
+        editText.setLayoutParams(lp4et);
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setMessage("ဈေးနေ့ပြောင်းရန်ထည့်ပါ")
+                .setView(layout)
+                .setPositiveButton("ပြောင်းမည်", (dialog, whichButton) -> {
+                    if (editText.length() > 0) {
+                        Utils.setDayName(this, wannKartDay, editText.getText().toString());
+                        tvWannKart.setText(Utils.getDayName(this, wannKartDay));
+                    } else {
+                        Toast.makeText(this, "ဈေးနေ့ရေးပေးပါ", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("မလုပ်တော့ပါ", null)
+                .show();
         return true;
     }
+
 }
