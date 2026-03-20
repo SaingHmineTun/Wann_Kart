@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wann Kart</string>
+    <string name="app_version">App Version: 1.6</string>
 </resources>

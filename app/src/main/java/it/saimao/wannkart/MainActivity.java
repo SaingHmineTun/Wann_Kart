@@ -27,6 +27,7 @@ import mmcalendar.CalendarType;
 import mmcalendar.Config;
 import mmcalendar.HolidayCalculator;
 import mmcalendar.Language;
+import mmcalendar.LanguageTranslator;
 import mmcalendar.MyanmarDate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -169,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (date.isEqual(LocalDate.now())) {
                 view.setBackgroundResource(R.drawable.date_today_outline);
                 tvEng.setTextColor(Color.parseColor("#0067FF"));
+                tvMoon.setTextColor(Color.parseColor("#0067FF"));
                 tvEng.setTypeface(null, Typeface.BOLD);
             }
             // Weekend/Holiday Styling
@@ -196,18 +198,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvMyanmarDate.setText(myDate.format("S s k, B y k, M p f r En"));
 
         if (HolidayCalculator.isHoliday(myDate)) {
-            tvDate.setText(HolidayCalculator.getHoliday(myDate).get(0));
-            updateHeaderColors("#BA1A1A");
+            tvDate.setText(LanguageTranslator.translateSentence(HolidayCalculator.getHoliday(myDate).get(0), Language.ENGLISH, Language.MYANMAR).replace(" ", ""));
         } else {
             tvDate.setText(myDate.format("En"));
-            updateHeaderColors("#1A1C1E");
         }
 
         // Market Day Logic
         long days = ChronoUnit.DAYS.between(LocalDate.of(1996, 1, 1), localDate);
         wannKartDay = (int) (days % 5);
         tvWannKart.setText(Utils.getDayName(this, wannKartDay));
-        cardWannKart.setCardBackgroundColor(getWannKartColor());
 
         highlightCell(localDate);
     }
@@ -222,23 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void updateHeaderColors(String code) {
-        tvDate.setTextColor(Color.parseColor(code));
-        // Keep the big day number dark for readability
-        tvDay.setTextColor(Color.parseColor("#1A1C1E"));
-    }
 
-    private int getWannKartColor() {
-        // Material 3 Tonal Palette Colors
-        int[] colors = {
-                0xFFD04D5B, // Muted Red
-                0xFF4D7CC0, // Muted Blue
-                0xFF5A5F69, // Slate
-                0xFFD08D3E, // Muted Orange
-                0xFF569A5A  // Muted Green
-        };
-        return colors[wannKartDay];
-    }
 
     @Override
     public void onClick(View v) {

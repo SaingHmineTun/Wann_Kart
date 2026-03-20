@@ -42,7 +42,7 @@ public class AboutUsActivity extends AppCompatActivity {
                 R.drawable.ic_facebook,
                 "Facebook",
                 "ထုင်ႉမၢဝ်းၶမ်း",
-                v -> openUrl("https://www.facebook.com/100377671433172")
+                v -> openTmkFacebookPage()
         );
 
         // GitHub Card
@@ -51,7 +51,7 @@ public class AboutUsActivity extends AppCompatActivity {
                 R.drawable.ic_github,
                 "GitHub",
                 "Get Source Code",
-                v -> openUrl("https://github.com/SaingHmineTun/learn_shan")
+                v -> openUrl("https://github.com/SaingHmineTun/Wann_Kart")
         );
 
         // Website Card
@@ -74,6 +74,17 @@ public class AboutUsActivity extends AppCompatActivity {
         tvValue.setText(value);
 
         card.setOnClickListener(listener);
+    }
+
+    private void openTmkFacebookPage() {
+
+        Intent intent;
+        try {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/100377671433172"));
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/100377671433172"));
+        }
+        startActivity(intent);
     }
 
     private void sendEmail() {
